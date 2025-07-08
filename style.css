@@ -1,0 +1,130 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: #003366;
+  color: #fff;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+main {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+
+#tournament {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+#tournament .left,
+#tournament .right {
+  flex: 1;
+  background: #fff;
+  padding: 1rem;
+  border-left: 4px solid #003366;
+  box-sizing: border-box;
+}
+
+#teams .team {
+  border-bottom: 1px solid #ddd;
+  padding: 0.5rem 0;
+}
+
+/* 1. Make the wrapper scrollable */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 2. Keep table style normal */
+#scoreboard {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px; /* force table to be wider than small screens */
+}
+
+#scoreboard th,
+#scoreboard td {
+  white-space: nowrap; /* prevent cell content from wrapping */
+  text-align: center;
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+}
+
+#scoreboard th {
+  background: #003366;
+  color: #fff;
+}
+
+
+#previous-seasons {
+  margin-top: 2rem;
+  background: #fff;
+  padding: 1rem;
+  border-left: 4px solid #003366;
+}
+
+#previous-seasons ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#previous-seasons li {
+  background: #f9f9f9;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #003366;
+  color: #fff;
+  margin-top: 2rem;
+}
+
+/* ✅ Proper stacking */
+@media (max-width: 768px) {
+  #tournament {
+    flex-direction: column;
+  }
+
+  #tournament .left,
+  #tournament .right {
+    border-left: none;
+    border-top: 4px solid #003366;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+
+  header h2,
+  header h3 {
+    font-size: 1.1rem;
+  }
+
+  #scoreboard th,
+  #scoreboard td {
+    padding: 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  #teams .team {
+    font-size: 0.95rem;
+  }
+}
