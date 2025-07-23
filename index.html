@@ -3,116 +3,137 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Astoria FC Tournaments</title>
-  <link rel="stylesheet" href="style.css"/>
+  <title>Astoria FC Tournament</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>Intra Club Championship</h1>
-    <h2>Tournament Dashboard</h2>
-    <h3>Season 2</h3>
+    <h1>Astoria FC - Intra Club Championship - AMC</h1>
   </header>
 
-  <main>
-    <!-- Section: Teams & Scoreboard -->
-    <section id="tournament">
-      <div class="left">
-        <h3>Teams</h3>
-        <div id="teams">
-          <div class="team">
-            <strong>Team Atik</strong><br><br>
-            Mahir (GK), Shourov Bhai, Sakib Bhai, Atik (C), Kawsar, Sayeem, Sami
-            <br><br>
-          </div>
-          <div class="team">
-            <strong>Team Masum Bhai</strong><br><br>
-            Shoron (GK), Masum Bhai (C), Nahid, Reaj, Sakib, Forkan, Tamim
-            <br><br>
-          </div>
-          <div class="team">
-            <strong>Team Mahim</strong><br><br>
-            Siam (GK), Ashraful Bhai, Arif, Mahim (C), Tajim, Emaead, Sami
-            <br><br>
-          </div>
-          <div class="team">
-            <strong>Team Saad</strong><br><br>
-            Shopon (GK), Saad (C), Babu, Abir Sr., Ador, Supto, Abir Jr.
-            <br><br>
-          </div>
-        </div>
-      </div>
+  <h1>Season 2</h1>
 
-      <div class="right">
-        <h3>Group Results</h3>
-        <div class="table-wrapper">
-          <table id="scoreboard">
-            <thead>
-              <tr>
-                <th>Team</th>
-                <th>Match</th>
-                <th>Won</th>
-                <th>Lost</th>
-                <th>Draw</th>
-                <th>Points</th>
-                <th>GD</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Team Atik</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Team Masum Bhai</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Team Mahim</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Team Saad</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+  <!-- Team Section -->
+  <section id="teams">
+    <h2>Teams</h2>
+    <div class="teams-container">
+      <!-- Repeat for each team -->
+      <div class="team">
+        <h3>Team Atik</h3>
+        <ul>
+          <li>Mahir (GK)</li>
+          <li>Atik (C)</li>
+          <li>Shourov Bhai</li>
+          <li>Kawsar</li>
+          <li>Sami</li>
+          <li>Sayeem</li>
+          <li>TBA</li>
+        </ul>
       </div>
-    </section>
+      <div class="team">
+        <h3>Team Mahim</h3>
+        <ul>
+          <li>Siam (GK)</li>
+          <li>Mahim (C)</li>
+          <li>Toha</li>
+          <li>Ashraful Bhai</li>
+          <li>Arif</li>
+          <li>Tajim</li>
+          <li>Emaed</li>
+        </ul>
+      </div>
+      <div class="team">
+        <h3>Team Masum Bhai</h3>
+        <ul>
+          <li>Shoron (GK)</li>
+          <li>Nahid</li>
+          <li>Tamim</li>
+          <li>Masum Bhai (C)</li>
+          <li>Sakib</li>
+          <li>Riyaj</li>
+          <li>TBA</li>
+        </ul>
+      </div>
+      <div class="team">
+        <h3>Team Saad</h3>
+        <ul>
+          <li>Sadi (GK)</li>
+          <li>Saad (C)</li>
+          <li>TBA</li>
+          <li>Abir</li>
+          <li>Ador</li>
+          <li>Shopon</li>
+          <li>Supto</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-    <!-- Section: Previous Seasons -->
-    <section id="previous-seasons">
-      <h3>Previous Season Winners</h3>
-      <ul id="winners-list">
-        <li><strong>Season 1:</strong> Shoron (GK), Saad, Tamim, Kawsar (C), Supto, Sayeem, Ashraful</li>
+  <!-- Group Stage Table -->
+  <section id="group-stage">
+    <h2>Group Stage Results – Season 2</h2>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Team</th>
+            <th>MP</th>
+            <th>W</th>
+            <th>L</th>
+            <th>D</th>
+            <th>GA</th>
+            <th>Points</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Team Atik</td>
+            <td>3</td><td>2</td><td>0</td><td>1</td><td>5</td><td>2</td>
+          </tr>
+          <tr>
+            <td>Team Mahim</td>
+            <td>3</td><td>1</td><td>1</td><td>1</td><td>3</td><td>3</td>
+          </tr>
+          <tr>
+            <td>Team Masum Bhai</td>
+            <td>3</td><td>0</td><td>2</td><td>1</td><td>2</td><td>6</td>
+          </tr>
+          <tr>
+            <td>Team Saad</td>
+            <td>3</td><td>3</td><td>0</td><td>0</td><td>7</td><td>1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Match Schedule -->
+  <section id="schedule">
+    <h2>Match Schedule</h2>
+    <ul class="schedule-list">
+      <li>Team Mahim vs Team Saad – July 24, 5:00 PM</li>
+      <li>Team C vs Team D – July 26, 5:00 PM</li>
+      <li>Team A vs Team C – July 27, 4:00 PM</li>
+      <li>Team B vs Team D – July 27, 5:00 PM</li>
+    </ul>
+  </section>
+
+  <!-- Previous Season Records -->
+  <section id="records">
+    <h2 onclick="toggleRecords()">▶ Season 1 Records</h2>
+    <div id="records-content" style="display: none;">
+      <ul>
+        <li><strong>Winner:</strong> Shoron (GK), Saad, Tamim, Kawsar (C), Supto, Sayeem, Ashraful</li>
+        <li><strong>Player of the Tournament:</strong> Abir</li>
+        <li><strong>Best Goalkeeper:</strong> Shoron</li>
       </ul>
-    </section>
-  </main>
+    </div>
+  </section>
 
   <footer>
-    <p>&copy; 2025 Astoria FC. All Rights Reserverd</p>
+    <p>&copy; 2025 Astoria FC</p>
   </footer>
 
-  <!-- JS not needed for static content -->
+  <script src="script.js"></script>
 </body>
 </html>
