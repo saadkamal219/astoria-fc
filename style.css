@@ -12,18 +12,25 @@ body {
 }
 
 header {
-  background: #1e2a38;
+  background-image: url('Media/big-bg.png');
+  /* background: #1e2a38; */
   color: white;
-  padding: 20px;
+  padding: 120px;
   text-align: center;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4, h5 {
   margin-bottom: 10px;
+  text-align: center;
 }
 
 section {
   padding: 20px;
+}
+
+#seasonHeader{
+    margin-top: 20px;
+    text-align: center;
 }
 
 .teams-container {
@@ -34,9 +41,13 @@ section {
 
 .team {
   background: white;
-  padding: 15px;
+  padding: 13px;
   border-radius: 8px;
   box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.team p{
+    text-align: center;
 }
 
 .table-container {
@@ -50,7 +61,7 @@ table {
 }
 
 table, th, td {
-  border: 1px solid #ccc;
+  border: 3px solid #000000;
 }
 
 th, td {
@@ -69,6 +80,11 @@ th, td {
   margin-bottom: 8px;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.schedule-list span{
+    color: #ff0000;
+    font-weight: 700;
 }
 
 #records h2 {
@@ -92,4 +108,14 @@ footer {
   background: #1e2a38;
   color: white;
   margin-top: 20px;
+}
+
+@media (max-width: 500px) {
+
+  header {
+    background-image: url('Media/small-bg.webp');
+    /* background: #000000; */
+    padding: 30px;
+  }
+    
 }
