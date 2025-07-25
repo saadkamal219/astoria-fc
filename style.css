@@ -50,6 +50,15 @@ section {
     text-align: center;
 }
 
+#decJ{
+  margin-top: 20px;
+}
+
+#decJ span {
+  font-size: 25px;
+  color: rgb(240, 205, 5);
+}
+
 .table-container {
   overflow-x: auto;
 }
