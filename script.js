@@ -1,12 +1,10 @@
-function toggleRecords() {
-  const section = document.getElementById("records-content");
-  const header = document.querySelector("#records h2");
+function toggleRecord(header) {
+  const content = header.nextElementSibling;
+  const isVisible = content.style.display === "block";
 
-  if (section.style.display === "none") {
-    section.style.display = "block";
-    header.textContent = "▼ Previous Season Records";
-  } else {
-    section.style.display = "none";
-    header.textContent = "▶ Previous Season Records";
-  }
+  // Toggle display
+  content.style.display = isVisible ? "none" : "block";
+
+  // Toggle arrow
+  header.textContent = `${isVisible ? "▶" : "▼"} ${header.textContent.slice(2)}`;
 }

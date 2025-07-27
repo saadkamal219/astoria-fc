@@ -14,11 +14,14 @@
     <h3>AMC & Astoria FC</h3>
   </header>
 
-  <h1 id="seasonHeader">Season 2</h1>
+  <h1 id="seasonHeader">Upcomming Events</h1>
+
+  <h3>Astoria FC vs AMC</h3>
+  <h4>5 Match Series</h4>
 
   <!-- Team Section -->
   <section id="teams">
-    <h2>Teams</h2>
+    <h2>Teams (ICC)</h2>
     <div class="teams-container">
       <!-- Repeat for each team -->
       <div class="team">
@@ -39,12 +42,12 @@
       </div>
     </div>
 
-    <h3 id="decJ">Special thanks to <span>Jashim</span> for cooperating us.</h3>
+    <!-- <h3 id="decJ">Special thanks to <span>Jashim</span> for cooperating us.</h3> -->
 
   </section>
 
   <!-- Group Stage Table -->
-  <section id="group-stage">
+  <!-- <section id="group-stage">
     <h2>Group Stage Results – Season 2</h2>
     <div class="table-container">
       <table>
@@ -79,10 +82,10 @@
         </tbody>
       </table>
     </div>
-  </section>
+  </section> -->
 
   <!-- Match Schedule -->
-  <section id="schedule">
+  <!-- <section id="schedule">
     <h2>Match Schedule</h2>
     <ul class="schedule-list">
       <li>Team Mahim vs Team Saad       – July 24, 5:00 PM <span>[Canceled]</span></li>
@@ -94,14 +97,28 @@
       <li>Team Saad vs Team Masum Bhai – July 26, 7:40 AM</li>
       <strong><li>TBA vs TBA [Final]  – July 26, 9:00 PM</li></strong>
     </ul>
-  </section>
+  </section> -->
 
   <!-- Previous Season Records -->
-  <section id="records">
-    <h2 onclick="toggleRecords()">▶ Season 1 Records</h2>
-    <div id="records-content" style="display: none;">
+
+  <section class="record-section">
+    <h2 onclick="toggleRecord(this)">▶ Season 2 Records</h2>
+    <div class="record-content" style="display: none;">
       <ul>
-        <li><strong>Winner:</strong> Shoron (GK), Saad, Tamim, Kawsar (C), Supto, Sayeem, Ashraful</li>
+        <li><strong>Season 2 Winner:</strong> Team Atik</li>
+        <li><strong>Player of the Tournament:</strong> Sayem</li>
+        <li><strong>Best Goalkeeper:</strong> Siam</li>
+        <li><strong>Best Defender:</strong> Atik</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Season 1 Record -->
+  <section class="record-section">
+    <h2 onclick="toggleRecord(this)">▶ Season 1 Records</h2>
+    <div class="record-content" style="display: none;">
+      <ul>
+        <li><strong>Season 1 Winner:</strong> Shoron (GK), Saad, Tamim, Kawsar (C), Sayeem, Supto, Ashraful</li>
         <li><strong>Player of the Tournament:</strong> Abir</li>
         <li><strong>Best Goalkeeper:</strong> Shoron</li>
       </ul>
