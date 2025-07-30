@@ -1005,11 +1005,13 @@ th, td {
 
 .record-section h2 {
   cursor: pointer;
-  background-color: #1e2a38;
+  background-color: #4d2c02;
   color: #fff;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 20px;
   user-select: none;
+  margin-bottom: 30px;
+  font-size: 20px;
 }
 
 .record-content {
@@ -1020,6 +1022,10 @@ th, td {
   box-shadow: 0 0 6px rgba(0,0,0,0.1);
 }
 
+.record-content li{
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
 
 #records h2 {
   cursor: pointer;

@@ -48,6 +48,64 @@
 
         </section>
 
+        <!-- Collapsible Records -->
+        <section class="section-p1">
+
+            <div class="record-section">
+            
+            <!-- Season 2 -->
+            <h2 onclick="toggleRecord('season2')" style="text-align: center;">ICC&nbsp;&nbsp; Season 2&nbsp;&nbsp; ⬇</h2>
+
+            <div id="season2" class="record-content">
+                <ul>
+                <li><strong>Winner:</strong> Team Atik</li>
+                <li><strong>Player of the Tournament:</strong> Sayeem</li>
+                <li><strong>Best Goalkeeper:</strong> Siam</li>
+                <li><strong>Best Defender:</strong> Atik</li>
+                </ul>
+                <div class="table-container">
+                <h4>Match Results</h4>
+                <!-- <table>
+                    <thead>
+                        <tr><th>Match</th><th>Score</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Team Mahim vs Team Masum Bhai</td><td>3 - 3</td></tr>
+                        <tr><td>Team Atik vs Team Saad</td><td>2 - 2</td></tr>
+                        <tr><td>Team Saad vs Team Mahim</td><td>3 - 1</td></tr>
+                        <tr><td>Team Masum Bhai vs Team Atik</td><td>1 - 1</td></tr>
+                    </tbody>
+                </table> -->
+                </div>
+            </div>
+
+            <!-- Season 1 -->
+            <h2 onclick="toggleRecord('season1')"  style="text-align: center;">ICC &nbsp;&nbsp;Season 1&nbsp;&nbsp; ⬇</h2>
+            <div id="season1" class="record-content" style="display: none;">
+                <ul>
+                <li><strong>Winner:</strong> Shoron (GK), Saad, Tamim, Kawsar (C), Sayeem, Supto, Ashraful</li>
+                <li><strong>Player of the Tournament:</strong> Abir</li>
+                <li><strong>Best Goalkeeper:</strong> Shoron</li>
+                <li><strong>Best Defender:</strong> -----</li>
+                </ul>
+                <div class="table-container">
+                <!-- <h4>Match Results</h4> -->
+                <!-- <table>
+                    <thead>
+                    <tr><th>Match</th><th>Score</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr><td>Crimson Strikers vs Dynamos FC</td><td>2 - 0</td></tr>
+                    <tr><td>Astoria FC vs Shadow Blades</td><td>1 - 1</td></tr>
+                    <tr><td>Final: Crimson Strikers vs Astoria FC</td><td>2 - 1</td></tr>
+                    </tbody>
+                </table> -->
+                </div>
+            </div>
+
+            </div>
+        </section>
+
         <footer class="section-p1" id="footer-problem">
             
             <div class="copyright">
@@ -60,6 +118,13 @@
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
+        <script>
+            function toggleRecord(id) {
+            const el = document.getElementById(id);
+            el.style.display = el.style.display === "none" ? "block" : "none";
+            }
+        </script>
+    
     </body>
 
 </html>
