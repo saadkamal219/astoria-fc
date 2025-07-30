@@ -1,134 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ICC - AA</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" type="image/webp" href="Media/shortIcon.webp">
-</head>
-<body>
-  <header>
-    <h1>Intra Club Championship</h1>
-    <h5>Organized by</h5>
-    <h3>AMC & Astoria FC</h3>
-  </header>
 
-  <h1 id="seasonHeader">Upcomming Events</h1>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" type="image" href="img/up1.svg">
+        <title>Home</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
 
-  <h3>Astoria FC vs AMC</h3>
-  <h4>5 Match Series</h4>
+    <body>
 
-  <!-- Team Section -->
-  <section id="teams">
-    <h2>Teams (ICC)</h2>
-    <div class="teams-container">
-      <!-- Repeat for each team -->
-      <div class="team">
-        <h3>Team Atik</h3>
-        <p>Mahir (GK), Atik (C), Shourov Bhai, Kawsar, Sayeem, Sami, TBA</p>
-      </div>
-      <div class="team">
-        <h3>Team Mahim</h3>
-        <p>Siam (GK), Mahim (C), Ashraful Bhai, Arif, Tajim, Toha, Emayed</p>
-      </div>
-      <div class="team">
-        <h3>Team Masum Bhai</h3>
-        <p>Shoron (GK), Masum Bhai (C), Sakib, Nahid, Riyaj, Tamim, TBA</p>
-      </div>
-      <div class="team">
-        <h3>Team Saad</h3>
-        <p>Sadi (GK), Saad (C), Shopon, Abir, Ador, Supto, TBA</p>
-      </div>
-    </div>
+        <section id="header">
 
-    <!-- <h3 id="decJ">Special thanks to <span>Jashim</span> for cooperating us.</h3> -->
+            <a href="#" id="mobile-version"><img src="img/short_logo.svg" class="logo" alt="medicare-logo"></a>
 
-  </section>
+            <!-- <a href="#" id="mobile-version" class="up-logo">
+                <h3>Unicorn Agro <snap style="color: #00c012;">Bangladesh</snap></h3>
+            </a> -->
 
-  <!-- Group Stage Table -->
-  <!-- <section id="group-stage">
-    <h2>Group Stage Results – Season 2</h2>
-    <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Team</th>
-            <th>MP</th>
-            <th>W</th>
-            <th>L</th>
-            <th>D</th>
-            <th>GD</th>
-            <th>Points</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Team Saad</td>
-            <td>2</td><td>1</td><td>0</td><td>1</td><td>2</td><td>4</td>
-          </tr>
-          <tr>
-            <td>Team Atik</td>
-            <td>2</td><td>0</td><td>0</td><td>2</td><td>0</td><td>2</td>
-          </tr>
-          <tr>
-            <td>Team Masum Bhai</td>
-            <td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td>
-          </tr>
-          <tr>
-            <td>Team Mahim</td>
-            <td>1</td><td>0</td><td>1</td><td>0</td><td>-2</td><td>0</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section> -->
+            <div>
+                <ul id="navbar">
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="teams.html" >Teams</a></li>
+                    <li><a href="tournament.html" >Tournament</a></li>
+                    <li><a href="transfermarket.html">Transfer Market</a></li>
+                    <li><a href="records.html">Records</a></li>
+                    <a href="#" id="close" style="font-weight: 700;">Back</a>
+                </ul>
+            </div>
 
-  <!-- Match Schedule -->
-  <!-- <section id="schedule">
-    <h2>Match Schedule</h2>
-    <ul class="schedule-list">
-      <li>Team Mahim vs Team Saad       – July 24, 5:00 PM <span>[Canceled]</span></li>
-      <li>Team Masum Bhai vs Team Atik  – July 25, 6:20 AM <span style="color: rgb(10, 184, 10);">[Done]</span></li>
-      <li>Team Mahim vs Team Saad       – July 25, 7:00 AM <span style="color: rgb(10, 184, 10);">[Done]</span></li>
-      <li>Team Atik vs Team Saad       – July 25, 8:00 AM <span style="color: rgb(10, 184, 10);">[Done]</span></li>
-      <li>Team Mahim vs Team Masum Bhai  – July 26, 6:30 AM </li>
-      <li>Team Atik vs Team Mahim        – July 26, 7:00 PM</li>
-      <li>Team Saad vs Team Masum Bhai – July 26, 7:40 AM</li>
-      <strong><li>TBA vs TBA [Final]  – July 26, 9:00 PM</li></strong>
-    </ul>
-  </section> -->
+            <div id="mobile">
+                <i id="bar" class="fas fa-futbol" style="color: #4d2c02;"></i>
+            </div>
 
-  <!-- Previous Season Records -->
+        </section>
 
-  <section class="record-section">
-    <h2 onclick="toggleRecord(this)">▶ Season 2 Records</h2>
-    <div class="record-content" style="display: none;">
-      <ul>
-        <li><strong>Season 2 Winner:</strong> Team Atik</li>
-        <li><strong>Player of the Tournament:</strong> Sayem</li>
-        <li><strong>Best Goalkeeper:</strong> Siam</li>
-        <li><strong>Best Defender:</strong> Atik</li>
-      </ul>
-    </div>
-  </section>
+        <section id="hero">
 
-  <!-- Season 1 Record -->
-  <section class="record-section">
-    <h2 onclick="toggleRecord(this)">▶ Season 1 Records</h2>
-    <div class="record-content" style="display: none;">
-      <ul>
-        <li><strong>Season 1 Winner:</strong> Shoron (GK), Saad, Tamim, Kawsar (C), Sayeem, Supto, Ashraful</li>
-        <li><strong>Player of the Tournament:</strong> Abir</li>
-        <li><strong>Best Goalkeeper:</strong> Shoron</li>
-      </ul>
-    </div>
-  </section>
+            <div id="inter_section">
+                
+              <!-- <h3>Dive into</h3>  
+              <h2>Madness with Us</h2>
+              <a href="collections.html">Explore</a> -->
 
-  <footer>
-    <p>&copy; 2025 Astoria FC</p>
-  </footer>
+            </div>
 
-  <script src="script.js"></script>
-</body>
+        </section>
+
+        <h2 id="feature-header">Key Features</h2>
+
+        <section id="feature" class="section-p1">
+
+            <div class="fe-box">
+                <img src="img/features/adaptibility.png" alt="fast delivary">
+                <h6 style="background-color: rgb(179, 60, 79);">Adaptibility</h6>
+            </div>
+            <div class="fe-box">
+                <img src="img/features/Brotherhood.png" alt="online order">
+                <h6 style="background-color: rgb(27, 146, 23);">Brotherhood</h6>
+            </div>
+            <div class="fe-box">
+                <img src="img/features/Ambitious.png" alt="blood bank">
+                <h6 style="background-color: rgb(60, 88, 179);">Ambitious</h6>
+            </div>
+            <div class="fe-box">
+                <img src="img/features/Diversity.png" alt="ambulance service">
+                <h6 style="background-color: rgb(187, 161, 16);">Diversity</h6>
+            </div>
+            </div>
+
+        </section>
+
+        <section class="club-description">
+            <p style="color: #000000;"><strong>Astoria F.C</strong> is a rising football club built on passion, teamwork, and dedication. Founded by a close-knit group of enthusiasts, the club quickly gained recognition through its competitive spirit and community-driven approach. With talented players, structured tournaments, and a growing fanbase, Astoria F.C. continues to make its mark in local leagues. Whether on the pitch or off it, the club stands as a symbol of unity, ambition, and football excellence.</p>
+        </section>
+
+        <footer class="section-p1" id="footer-problem">
+            
+            <!-- <div class="col">
+
+                <img class="logo" src="img/short_logo.png" alt="">
+                <h4>Contact</h4>
+                <p><strong>Address: </strong>Uttara Sector 10, Dhaka, Bangladesh</p>
+                <p><strong>Phone: </strong>+88019266659041, +8801745330205</p>
+                <div class="follow">
+                    <h4>Follow Us</h4>
+                    <div class="icon">
+                        <ion-icon name="logo-facebook"></ion-icon>
+                        <ion-icon name="logo-instagram"></ion-icon>
+                        <ion-icon name="logo-youtube"></ion-icon>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div class="col">
+
+                <h4>About</h4>
+                <a href="aboutus.html">About Us</a>
+                <a href="#">Delivary Information</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms and Conditions</a>
+                <a href="#">Contact Us</a>
+
+            </div>
+
+            <div class="col">
+
+                <h4>Categories</h4>
+                <a href="collections.html">Fish</a>
+                <a href="collections.html">Reptiles</a>
+                <a href="collections.html">Amphibians</a>
+                <a href="collections.html">Birds</a>
+                <a href="collections.html">Cattle</a>
+
+            </div>
+
+            <div class="col install">
+
+                <h4>Install App</h4>
+                <p>The mobile version will be available soon.</p>
+                <div class="row">
+
+                    <img src="img/pay/app.jpg" alt="">
+                    <img src="img/pay/play.jpg" alt="">
+                    
+                </div>
+
+            </div> -->
+
+            <div class="copyright">
+              <p style="color: #000000;">&copy copyright - All Rights Reserved. Developed by <span style="color: #4d2c02;">Asturia FC</span></p>
+            </div>
+
+        </footer>
+
+        <script src="script.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    </body>
+
 </html>
