@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Team Lottery Wheel</title>
+  <style>
+    :root{
+      --bg: #0b1020;
+      --card: #121733;
+      --accent: #6ee7ff;
+      --accent-2: #a78bfa;
+      --text: #e6ecff;
+      --muted: #9aa6c3;
+      --success: #22c55e;
+      --danger: #ef4444;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(1200px 800px at 70% -10%, #1a2b6b22, transparent 60%), var(--bg);
+      color: var(--text);
+    }
+    .app{ display:grid; grid-template-columns: 360px 1fr; gap: 18px; padding: 20px; max-width: 1200px; margin: 0 auto; }
+    @media (max-width: 960px){ .app{ grid-template-columns: 1fr; } }
+
+    .card{ background: linear-gradient(180deg, #141a3a 0%, var(--card) 100%); border:1px solid #2b3466; border-radius: 18px; box-shadow: 0 10px 30px #0008;
+      padding: 18px; }
+    .title{ display:flex; align-items:center; gap:10px; font-weight: 800; letter-spacing: .3px; }
+    .pill{ font-size: 12px; color: #0a153a; background: linear-gradient(90deg, var(--accent), var(--accent-2)); padding: 4px 8px; border-radius: 999px; font-weight: 700; }
+
+    .row{ display:flex; gap: 10px; }
+    .col{ flex: 1; }
+
+    input, button, textarea{ font: inherit; }
+    input[type="text"]{
+      width:100%; padding: 12px 14px; border-radius: 12px; border:1px solid #2f3a73; background:#0d1230; color: var(--text);
+      outline: none; box-shadow: inset 0 0 0 1px transparent; transition: box-shadow .2s, border-color .2s;
+    }
+    input[type="text"]:focus{ border-color: var(--accent); box-shadow: inset 0 0 0 1px #6ee7ff55; }
+
+    .btn{ padding: 10px 14px; border-radius: 12px; border:1px solid #2f3a73; background:#0f1538; color: var(--text); cursor: pointer; font-weight: 700;
+      transition: transform .03s ease, background .2s, border-color .2s, filter .2s; }
+    .btn:hover{ filter: brightness(1.1); }
+    .btn:active{ transform: translateY(1px); }
+    .btn.primary{ background: linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 100%); color: #081025; border-color: transparent; }
+    .btn.ghost{ background: transparent; }
+    .btn.success{ background: linear-gradient(90deg, #34d399, #22c55e); color:#03140c; border-color: transparent; }
+    .btn.danger{ background: linear-gradient(90deg, #fb7185, #ef4444); color:#2f0707; border-color: transparent; }
+    .btn:disabled{ opacity: .5; cursor: not-allowed; }
+
+    .list{ display:flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .chip{ display:flex; align-items:center; gap:8px; background:#0e1434; border:1px solid #2b3466; padding: 8px 10px; border-radius: 999px; }
+    .chip b{ opacity: .8; }
+    .chip button{ border:none; background:#1b2558; color:#cbd5ff; padding:4px 8px; border-radius: 999px; cursor:pointer; }
+
+    .section{ margin-top: 14px; }
+    .section h3{ margin: 0 0 10px; font-size: 14px; letter-spacing: .4px; color: var(--muted); }
+
+    .wheel-wrap{ position:relative; display:grid; place-items:center; padding: 16px; }
+    canvas{ width: min(86vw, 560px); height: min(86vw, 560px); max-width: 560px; max-height: 560px; background: radial-gradient(600px 600px at 50% 50%, #1f2b6b22, transparent 60%);
+      border-radius: 50%; }
+
+    .pointer{ position:absolute; top: 16px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 16px solid transparent; border-right: 16px solid transparent; border-bottom: 26px solid #f59e0b; filter: drop-shadow(0 6px 4px #0006); }
+
+    .spin-bar{ display:flex; gap:10px; flex-wrap: wrap; justify-content:center; margin-top: 10px; }
+
+    .log{ max-height: 240px; overflow:auto; border:1px solid #2b3466; border-radius: 12px; padding: 10px; background:#0b1030; }
+    .log .item{ display:flex; justify-content:space-between; align-items:center; padding: 8px 10px; border-bottom:1px dashed #23306b; }
+    .log .item:last-child{ border-bottom: none; }
+
+    .badge{ padding: 2px 8px; border-radius: 999px; background:#17204d; border:1px solid #2b3466; font-size: 12px; color:#bcd0ff; }
+
+    /* Modal */
+    .modal{ position: fixed; inset:0; display:none; place-items:center; background:#0008; z-index: 50; }
+    .modal.open{ display:grid; }
+    .modal .dialog{ background: linear-gradient(180deg, #12183c, #0d1333); border-radius: 18px; border:1px solid #30408a; padding: 20px; width: min(92vw, 520px); text-align:center; box-shadow: 0 20px 60px #000a; }
+    .dialog h2{ margin: 0 0 6px; font-size: 28px; }
+    .dialog p{ margin: 0 0 14px; color:#c9d6ff; }
+
+    .hint{ font-size: 12px; color: #8fa0cf; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <!-- Left: Controls -->
+    <section class="card" aria-labelledby="controls-title">
+      <div class="title" id="controls-title">
+        <span class="pill">Lottery Builder</span>
+        <span style="opacity:.8">Team Lottery Wheel</span>
+      </div>
+
+      <div class="section">
+        <h3>Add teams</h3>
+        <div class="row">
+          <div class="col"><input id="team-input" type="text" maxlength="32" placeholder="Enter team name…" /></div>
+          <button id="add-btn" class="btn primary" aria-label="Add team">Add</button>
+        </div>
+        <div class="row" style="margin-top:8px">
+          <button id="sample-btn" class="btn ghost" title="Load sample teams">Load sample</button>
+          <button id="shuffle-btn" class="btn ghost" title="Shuffle teams">Shuffle</button>
+          <button id="clear-btn" class="btn danger" title="Clear all teams">Clear</button>
+        </div>
+        <div id="team-list" class="list" aria-live="polite"></div>
+        <p class="hint" style="margin-top:8px">Tip: Add at least 2 teams. The wheel updates automatically.</p>
+      </div>
+
+      <div class="section">
+        <h3>Spin settings</h3>
+        <div class="row">
+          <div class="col">
+            <label class="hint">Duration (s)
+              <input id="duration" type="text" inputmode="decimal" value="5" />
+            </label>
+          </div>
+          <div class="col">
+            <label class="hint">Extra rotations
+              <input id="rotations" type="text" inputmode="numeric" value="4" />
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Winners</h3>
+        <div id="log" class="log" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- Right: Wheel -->
+    <section class="card">
+      <div class="title" style="justify-content:space-between">
+        <span class="pill">Wheel</span>
+        <span class="hint">Pointer selects the winner</span>
+      </div>
+
+      <div class="wheel-wrap">
+        <div class="pointer" aria-hidden="true"></div>
+        <canvas id="wheel" width="700" height="700" role="img" aria-label="Team lottery wheel"></canvas>
+      </div>
+      <div class="spin-bar">
+        <button id="spin-btn" class="btn success" disabled>Spin 🎡</button>
+        <button id="reset-angle" class="btn ghost">Reset</button>
+        <span id="count-badge" class="badge">0 teams</span>
+      </div>
+    </section>
+  </div>
+
+  <!-- Result Modal -->
+  <div class="modal" id="result-modal" role="dialog" aria-modal="true" aria-labelledby="win-title">
+    <div class="dialog">
+      <h2 id="win-title">Winner</h2>
+      <p id="win-name" style="font-size:22px; font-weight:800"></p>
+      <div style="display:flex; gap:10px; justify-content:center; margin-top: 10px;">
+        <button id="close-modal" class="btn">Close</button>
+        <button id="remove-winner" class="btn danger">Remove from wheel</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const teamInput = document.getElementById('team-input');
+    const addBtn = document.getElementById('add-btn');
+    const sampleBtn = document.getElementById('sample-btn');
+    const shuffleBtn = document.getElementById('shuffle-btn');
+    const clearBtn = document.getElementById('clear-btn');
+    const teamListEl = document.getElementById('team-list');
+    const countBadge = document.getElementById('count-badge');
+
+    const durationEl = document.getElementById('duration');
+    const rotationsEl = document.getElementById('rotations');
+
+    const wheel = document.getElementById('wheel');
+    const ctx = wheel.getContext('2d');
+
+    const spinBtn = document.getElementById('spin-btn');
+    const resetAngleBtn = document.getElementById('reset-angle');
+
+    const logEl = document.getElementById('log');
+
+    const modal = document.getElementById('result-modal');
+    const winName = document.getElementById('win-name');
+    const closeModalBtn = document.getElementById('close-modal');
+    const removeWinnerBtn = document.getElementById('remove-winner');
+
+    /** State */
+    let teams = [];
+    let angle = 0; // current rotation (radians)
+    let spinning = false;
+    let lastWinnerIndex = null; // index in current teams array at the time of win
+
+    const pointerAngle = -Math.PI / 2; // upward
+
+    function save(){
+      localStorage.setItem('lottery_teams', JSON.stringify(teams));
+    }
+    function load(){
+      try{
+        const raw = localStorage.getItem('lottery_teams');
+        if(raw){ teams = JSON.parse(raw); }
+      }catch{}
+    }
+
+    function updateTeamChips(){
+      teamListEl.innerHTML = '';
+      teams.forEach((name, idx)=>{
+        const chip = document.createElement('div');
+        chip.className = 'chip';
+        chip.innerHTML = `<b>${escapeHtml(name)}</b> <button data-i="${idx}" aria-label="Remove ${escapeHtml(name)}">×</button>`;
+        chip.querySelector('button').addEventListener('click', (e)=>{
+          const i = Number(e.currentTarget.getAttribute('data-i'));
+          teams.splice(i,1); save(); updateTeamChips(); redraw();
+        });
+        teamListEl.appendChild(chip);
+      });
+      countBadge.textContent = `${teams.length} ${teams.length===1? 'team':'teams'}`;
+      spinBtn.disabled = teams.length < 2 || spinning;
+    }
+
+    function escapeHtml(s){
+      return s.replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+    }
+
+    function drawWheel(){
+      const { width, height } = wheel;
+      const cx = width/2, cy = height/2; const r = Math.min(cx, cy) - 20;
+      ctx.clearRect(0,0,width,height);
+
+      // Outer ring shadow
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(angle);
+
+      const n = Math.max(teams.length, 1);
+      const arc = Math.PI * 2 / n;
+      for(let i=0;i<n;i++){
+        const start = i*arc; const end = start + arc;
+        const hue = (i * (360/n)) % 360;
+        ctx.beginPath();
+        ctx.moveTo(0,0);
+        ctx.arc(0,0,r,start,end);
+        ctx.closePath();
+        ctx.fillStyle = `hsl(${hue} 70% 45% / ${teams.length?1:.2})`;
+        ctx.fill();
+
+        // Separator line
+        ctx.beginPath();
+        ctx.strokeStyle = '#0b1020';
+        ctx.lineWidth = 3;
+        ctx.arc(0,0,r,start,end);
+        ctx.stroke();
+
+        // Label
+        const label = teams[i] ?? '—';
+        ctx.save();
+        ctx.rotate(start + arc/2);
+        ctx.textAlign = 'right';
+        ctx.fillStyle = '#fff';
+        ctx.font = '700 22px system-ui, sans-serif';
+        wrapText(ctx, label, r - 20, 0, Math.min(22, Math.max(16, 540/n)));
+        ctx.restore();
+      }
+
+      // Center hub
+      ctx.beginPath();
+      ctx.arc(0,0,48,0,Math.PI*2);
+      const grd = ctx.createRadialGradient(0,0,6,0,0,48);
+      grd.addColorStop(0, '#c7d2fe');
+      grd.addColorStop(1, '#6366f1');
+      ctx.fillStyle = grd;
+      ctx.fill();
+
+      ctx.restore();
+
+      // Rim
+      ctx.beginPath();
+      ctx.lineWidth = 12;
+      ctx.strokeStyle = '#334155';
+      ctx.arc(cx,cy,r+6,0,Math.PI*2);
+      ctx.stroke();
+
+      // Notches
+      for(let i=0;i<n;i++){
+        const a = angle + i*arc;
+        const x1 = cx + Math.cos(a)*(r+10);
+        const y1 = cy + Math.sin(a)*(r+10);
+        const x2 = cx + Math.cos(a)*(r+22);
+        const y2 = cy + Math.sin(a)*(r+22);
+        ctx.beginPath();
+        ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.strokeStyle = '#475569'; ctx.lineWidth = 4; ctx.stroke();
+      }
+    }
+
+    function wrapText(ctx, text, maxWidth, yOffset, fontSize){
+      const words = text.split(' ');
+      let line = '';
+      const lines = [];
+      for(const w of words){
+        const test = line ? line + ' ' + w : w;
+        const width = ctx.measureText(test).width;
+        if(width <= maxWidth) line = test; else { lines.push(line); line = w; }
+      }
+      if(line) lines.push(line);
+      const lineHeight = fontSize + 2;
+      ctx.font = `700 ${fontSize}px system-ui, sans-serif`;
+      // Draw from inner to outer (right-aligned)
+      const startY = -Math.min(lines.length-1, 3) * lineHeight/2 + yOffset;
+      lines.slice(0,4).forEach((ln, i)=>{ ctx.fillText(ln,  maxWidth - 8, startY + i*lineHeight); });
+    }
+
+    function redraw(){
+      drawWheel();
+      updateTeamChips();
+    }
+
+    function addTeam(name){
+      name = name.trim();
+      if(!name) return;
+      if(teams.includes(name)) return;
+      teams.push(name); save(); redraw();
+      teamInput.value = '';
+      teamInput.focus();
+    }
+
+    addBtn.addEventListener('click', ()=> addTeam(teamInput.value));
+    teamInput.addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter') addTeam(teamInput.value);
+    });
+
+    sampleBtn.addEventListener('click', ()=>{
+      if(teams.length && !confirm('Replace current teams with a sample list?')) return;
+      teams = ['Astoria FC', 'Blue Hawks', 'Crimson Lions', 'Desert Eagles', 'Emerald United', 'Frost Wolves', 'Golden Bulls', 'Helios Stars'];
+      save(); redraw();
+    });
+
+    shuffleBtn.addEventListener('click', ()=>{
+      for(let i=teams.length-1;i>0;i--){ const j = Math.floor(Math.random()*(i+1)); [teams[i],teams[j]] = [teams[j],teams[i]]; }
+      save(); redraw();
+    });
+
+    clearBtn.addEventListener('click', ()=>{
+      if(!teams.length) return;
+      if(confirm('Clear all teams?')){ teams = []; save(); redraw(); }
+    });
+
+    resetAngleBtn.addEventListener('click', ()=>{
+      if(spinning) return; angle = 0; drawWheel();
+    });
+
+    function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
+
+    function spin(){
+      if(spinning || teams.length < 2) return;
+      spinning = true; spinBtn.disabled = true;
+
+      const n = teams.length;
+      const arc = Math.PI * 2 / n;
+
+      // Randomly pick a target segment index
+      const targetIndex = Math.floor(Math.random() * n);
+      lastWinnerIndex = targetIndex;
+
+      // Compute target angle so that pointer (fixed at -90°) lands at center of target segment
+      const targetSegmentCenter = targetIndex * arc + arc/2; // in wheel coordinates
+      // We need angle s.t. (angle + targetSegmentCenter) aligns with pointerAngle
+      let targetAngle = pointerAngle - targetSegmentCenter;
+
+      // Normalize relative to current angle, then add extra rotations
+      const extraTurns = clampInt(rotationsEl.value, 1, 20);
+      const fullRot = Math.PI * 2;
+      // ensure positive travel (current to target + k*2π)
+      while(targetAngle <= angle) targetAngle += fullRot;
+      targetAngle += fullRot * extraTurns;
+
+      const duration = clampNum(durationEl.value, 2, 15) * 1000; // ms
+      const start = performance.now();
+      const startAngle = angle;
+      const delta = targetAngle - startAngle;
+
+      function frame(now){
+        const t = Math.min(1, (now - start) / duration);
+        const eased = easeOutCubic(t);
+        angle = startAngle + delta * eased;
+        drawWheel();
+        if(t < 1){ requestAnimationFrame(frame); }
+        else { spinning = false; spinBtn.disabled = teams.length < 2; announceWinner(); }
+      }
+      requestAnimationFrame(frame);
+    }
+
+    function announceWinner(){
+      const n = teams.length; if(!n) return;
+      const arc = Math.PI * 2 / n;
+      // Compute the index at pointer after final angle (should match lastWinnerIndex)
+      let a = pointerAngle - angle; // wheel segment angle at pointer
+      a = (a % (Math.PI*2) + Math.PI*2) % (Math.PI*2); // normalize 0..2π
+      const idx = Math.floor(a / arc);
+      const name = teams[idx] || '—';
+
+      winName.textContent = name;
+      modal.classList.add('open');
+
+      // Log
+      const item = document.createElement('div');
+      item.className = 'item';
+      const ts = new Date().toLocaleString();
+      item.innerHTML = `<span>🏆 ${escapeHtml(name)}</span><span class="hint">${ts}</span>`;
+      logEl.prepend(item);
+    }
+
+    function clampNum(v, min, max){ v = Number(v); if(Number.isNaN(v)) v = min; return Math.min(max, Math.max(min, v)); }
+    function clampInt(v, min, max){ return Math.round(clampNum(v, min, max)); }
+
+    closeModalBtn.addEventListener('click', ()=>{ modal.classList.remove('open'); });
+    modal.addEventListener('click', (e)=>{ if(e.target === modal) modal.classList.remove('open'); });
+
+    removeWinnerBtn.addEventListener('click', ()=>{
+      const winner = winName.textContent;
+      const idx = teams.indexOf(winner);
+      if(idx !== -1){ teams.splice(idx,1); save(); }
+      modal.classList.remove('open');
+      redraw();
+    });
+
+    spinBtn.addEventListener('click', spin);
+
+    // Init
+    load();
+    redraw();
+
+    // Accessibility: keyboard shortcut to spin (Space / Enter when button focused)
+    spinBtn.addEventListener('keydown', (e)=>{ if((e.key===' '||e.key==='Enter')&&!spinBtn.disabled){ e.preventDefault(); spin(); }});
+  </script>
+</body>
+</html>
